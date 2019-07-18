@@ -1,31 +1,59 @@
-# Fraud Detection Case Study
+# Fraud Detection - Project Scope
 
-For the next two days we will work with the entire end to end pipeline of data science through a case study.  We have touched on aspects of this throughout the course but have not yet put all the pieces together.
+## Introduction
+EventDark is a company that runs a web based marketplace for events. 
+They create a platform that makes it easy for event hosts to list their
+event, sell/distribute tickets, and collect revenue. EventDark is 
+experiencing problems with fraudulent event listings in their platform. 
+There have been cases where users have bought tickets to fake events and 
+payouts have been made to fraudulent hosts. In these cases, EventDark is
+responsible to reimburse their users for lost value (alternatively they 
+can choose to lose public trust and shut their doors). To avoid this 
+problem, the company is now dedicating costly resources investigate 
+potential fraud listings and shut them down.
 
-Topics included in this case study include:
-* Classification modeling.
-* Programming Practice: Handing off models. 
-* Teamwork.
-* Web applications.
-* Website hosting with AWS
-* Deploying a DS application.
-* Data visualization.
-* Results presentation.
+As such, EventDark has tasked our boutique AI company, Fraudify, to provide 
+a scalable solution to handle fraudulent event listings. 
 
-#### Rough timeline 
+### The problem: losing money to fraud
+![](images/payout_time_series.png)
 
-* Day 1: Project scoping, Team direction, Model building
-* Day 2: Web app and deployment
+## Scope:
+* Explore available data
+* Perform EDA to determine signal in various features
+* Develop pipeline to encapsulate cleaning, transforming, and splitting of data
+* Train a suite of models and compare accuracy
+* Select top performing model and tune hyperparameters to optimize for recall
+* Develop web site to present visualizations on the problem (link: http://54.84.68.72:3333/)
+* Include API in the website to receive new live data from client
+* Create database to store data
+* Call data from database, clean it, and run model to generate a prediction and present it on the web site
 
-#### Deliverables
+## Classification Prescriptions
+The prediction probabilities were analyzed to determine valuable thresholds for high, medium, and low risk. High risk events can have a pause put on their account until an expert at the company can review it more closely. Moderate risk events will be reviewed by the investigation team at the company. This will help catch fraud with fewer resources being used.
 
-We will want two deliverables from you for this project:
+### High Risk: 
+* Model probability of 0.99 or higher
+* Accounts for 19% of the fraud
+* Expect 93% of these events to be fraud
 
-* A dashboard for investigators to use which helps them identify new events that are worthy of investigation for fraud.  This will pull in new data regularly, and update a useful display for the investigation team.  How you wish to lay this out is up to you.
-* A ten-minute presentation on your process and results. 
+### Moderate Risk:
+* Model probability between 0.05 and 0.99
+* Accounts for 64% of the fraud
+* Expect 43% of these events to be fraud
 
-#### Notes
+### Low Risk:
+* Model probability below 0.05
+* About 17% of fraud will still be in this category
 
-* [Overview](overview.md): gives a detailed overview of the project.  Included are *suggestions* for how you can organize your team, though this is not binding, and you are free to deviate.
-* [Building your model](model_notes.md): notes on how to get started with the dataset and how to save your model once you've trained it.
-# fraud-detection-case-study
+# Support:
+
+### Signal Analysis
+![](images/body_length_signal.png)
+![](images/channel_signal.png)
+![](images/length_of_name_signal.png)
+
+
+### Feature Importances
+![](images/feature_importances.png)
+
